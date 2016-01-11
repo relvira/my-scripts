@@ -4,9 +4,10 @@
 import smtplib,random,os
 
 
-fromaddr = os.environ.get('HR_SCRIPT_EMAIL')
-frompasswd = os.environ.get('HR_SCRIPT_PASSWD')
-toaddr  = 'relviratellez@gmail.com'
+fromaddr = os.environ.get('HR_SCRIPT_FROM_EMAIL')
+frompasswd = os.environ.get('HR_SCRIPT_FROM_PASSWD')
+toaddr  =  os.environ.get('HR_SCRIPT_TO_EMAIL')
+
 
 msgs = [
     "Hola! \n¿Podríais enviarme la nómina de este último mes? \n\nSaludos,\nRafa.",
@@ -14,8 +15,8 @@ msgs = [
     "Buenas, \n¿Podéis enviarme la nómina del último mes? \n\nGracias! \nRafa."
 ]
 
-if fromaddr is None or frompasswd is None:
-    print "HR_SCRIPT_EMAIL OR HR_SCRIPT_PASSWD not defined!"
+if fromaddr is None or frompasswd is None or toaddr is None:
+    print "HR_SCRIPT_FROM_EMAIL, HR_SCRIPT_TO_EMAIL OR HR_SCRIPT_PASSWD not defined!"
 else:
     randMsg = random.choice(msgs)
 
