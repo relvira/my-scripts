@@ -5,8 +5,10 @@
 #
 
 PLEX_SERVER="192.168.79.4"
-INSPECT_DIR="/Users/ret/Downloads/torrent/finished"
-PLEX_SERVER_DESTINATION_DIR="/mnt/NAS/torrent/"
+PLEX_USER="ret"
+INSPECT_DIR="/shared/torrent/finished"
+PLEX_SERVER_DESTINATION_DIR="/media/NAS/Torrent/"
+SCP_FORMAT_PATTERN="" # Only upload files with this pattern, ignore shitty torrent txt and images
 
 
 echo "-------------------------------------------------"
@@ -16,6 +18,8 @@ echo " "
 
 if [ "$(ls -A $INSPECT_DIR)" ]
 then
+        echo "Deleting all unwanted files... only keeping *.mp4, *.avi, *.srt, *.mkv"
+        find $INSPECT_DIR -type f ! -name '*.mkv' -or -name '*.mp4' -or -name '*.avi' -or -name '*.srt' -delete
 	FILECOUNT=$(ls -l $INSPECT_DIR | wc -l)
   	echo "Inspected folder contains: $FILECOUNT files"
   	
@@ -23,11 +27,11 @@ then
 	then
 		echo "Plex server is UP and running!!"
 		echo "Uploading pending files to Plex server"
-		scp -r $INSPECT_DIR/* ret@$PLEX_SERVER:$PLEX_SERVER_DESTINATION_DIR
+		scp -r $INSPECT_DIR/* $PLEX_USER@$PLEX_SERVER:$PLEX_SERVER_DESTINATION_DIR/.
 		if [ "$?" -eq "0" ];
 		then
 		    echo "Upload OK! Deleting pending files..."
-		    #rm -rf $INSPECT_DIR/*
+		    rm -rf $INSPECT_DIR/*
 		else
 		    echo "Upload FAILED, we're keeping the files for the moment"
 		fi
