@@ -8,6 +8,7 @@ PLEX_SERVER="192.168.79.4"
 INSPECT_DIR="/Users/ret/Downloads/torrent/finished"
 PLEX_SERVER_DESTINATION_DIR="/mnt/NAS/torrent/"
 
+
 echo "-------------------------------------------------"
 echo "- PLEX SERVER FILE UPLOADER (PENDING DOWNLOADS) -"
 echo "-------------------------------------------------"
