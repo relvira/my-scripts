@@ -4,7 +4,7 @@
 # BE AWARE: This script is awful but it works, I know i can do this with a find, I'll update the script ASAP
 #
 
-DOWNLOAD_FOLDER='/Users/ret/Downloads/torrent/finished/'
+DOWNLOAD_FOLDER='/shared/torrent/finished/'
 INSPECT_DEPTH=3
 DEPTH_REACHED=0
 INSPECT_FORMATS= ['mkv','mp4','avi']
